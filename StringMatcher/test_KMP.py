@@ -4,9 +4,6 @@ from StringMatcher import KMP
 
 class KMPTest(unittest.TestCase):
 
-	def setUp(self):
-		pass
-
 	def test_border_1(self):
 		matcher = KMP("AAAA")
 		self.assertEqual(matcher.get_border_table(), [0, 1, 2, 3])

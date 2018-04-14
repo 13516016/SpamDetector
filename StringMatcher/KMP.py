@@ -3,7 +3,7 @@ class KMP:
 		
 		usage : 
 
-		get_border() -> Returns the border function array
+		get_border() -> Returns the border function array (e.g  "AAAA" -> [0,1,2,3])
 		match(<string>) -> Match pattern with string. Returns True if the pattern exist in the string, otherwise return False
 
 	 '''
