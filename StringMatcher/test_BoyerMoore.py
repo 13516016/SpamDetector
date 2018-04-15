@@ -32,6 +32,10 @@ class BoyerMooreTest(unittest.TestCase):
 		matcher = BoyerMoore("baku") # a : 4, b : 5, c:3
 		self.assertTrue(matcher.match("kami menggunakan kata yang terlalu baku sehingga"))
 
+	def test_match_5(self):
+		matcher = BoyerMoore("alksjflkasjflkasjfaslfjlasjflajsflajsflasjflasjflkasjflkasjflkasjflkjsaf") # a : 4, b : 5, c:3
+		self.assertTrue(matcher.match("09012102412sdjadalksjflkasjflkasjfaslfjlasjflajsflajsflasjflasjflkasjflkasjflkasjflkjsafm"))
+
 
 
 if __name__ == '__main__':
