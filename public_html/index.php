@@ -68,17 +68,8 @@
 			<div class="content-header"> <span>Result</span>  </div>
 			<div class="content-loader" id="content_loader"></div>
 			
-			
+
 		</div>
-
-<!-- 	
-
-		<?php 
-			$algorithms = array("Knuth-Morris-Pratt", "Boyer Moore", "Regular Expression");
-			foreach ($algorithms as $algorithm) {
-				print("<h1>"); print("$algorithm"); print("</h1>");
-			}
-		?> -->
 
 	</div>
 	 <script type="text/javascript" src="js/api.js"></script>
