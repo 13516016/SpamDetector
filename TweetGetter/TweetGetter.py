@@ -17,15 +17,15 @@ class TweetGetter:
 		self.api = api
 
 	def __dictify(self, tweets_object):
-		return [{'text':tweet.text, 'screen_name' : tweet.user.screen_name, 'full_name' : tweet.user.name} for tweet in tweets_object]
+		return [{'text':tweet.text, 'screen_name' : '@'+tweet.user.screen_name, 'full_name' : tweet.user.name} for tweet in tweets_object]
 
-	def get_timeline_tweets(self):
-		tweets_object = self.api.home_timeline(count=10)
+	def get_timeline_tweets(self,count=20):
+		tweets_object = self.api.home_timeline(count=count)
 		tweets = self.__dictify(tweets_object)	
 		return tweets
 
-	def search_tweets(self, query):
-		tweets_object = self.api.search(q=query, count=10)
+	def search_tweets(self, query, count=20):
+		tweets_object = self.api.search(q=query, count=count)
 		tweets = self.__dictify(tweets_object)	
 		return tweets
 

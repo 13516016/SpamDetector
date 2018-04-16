@@ -1,7 +1,7 @@
 /*
 	PRIMARY : #141d26
-	 #243447
-	#4575AB
+	#1b2836
+	#1DA1F2
 	#c51f5d
 	#ffffff
 */
@@ -15,9 +15,10 @@ body {
 	background: #141d26;
 }
 
+
 .container {
 	padding-top: 105px;
-	height: 100%;
+	min-height: 40%;
 	width: 70%;
 	display: grid;
 	margin: 0 auto;
@@ -39,7 +40,14 @@ body {
 	margin: 0 auto;
 	margin-top: 25px;
 	grid-column: 8/9;
-	color: #FFFFFF;
+	color: #8899a6;
+}
+.header-about:hover {
+	margin: 0 auto;
+	margin-top: 25px;
+	grid-column: 8/9;
+	color: #1DA1F2;
+	text-decoration: underline;
 }
 
 .header-about span {
@@ -47,7 +55,6 @@ body {
 	font-size: 24px;
 	font-family: "Do Hyeon", sans-serif;
 }
-
 
 .navbar {
 	margin: 10px;
@@ -66,7 +73,7 @@ body {
 	padding: 15px 15px 0px 15px;
 	box-shadow: 2px 1px 5px #000000;
 	border-radius: 2px;
-	background :  #243447;
+	background :  #1b2836;
 }
 
 .navbar-search div {
@@ -75,11 +82,15 @@ body {
 .navbar-search input{
 	width: 92%;
 	border-radius: 10px;
-	border : 1px 1px 1px #243447;
+	border : 1px 1px 1px #1b2836;
 	background-color: #141d26;
-	border : 0px;
+	border: 1px solid #141d26;
 	padding: 10px;
 	color:#FFFFFF;
+}
+
+.navbar-search input:hover{
+	border: 1px solid #1DA1F2;
 }
 
 .navbar-search p{
@@ -94,6 +105,12 @@ body {
 	border: 0px;
 	border-radius: 7px;
 	background-color: #141d26;
+	border: 1px solid #141d26;
+}
+
+.navbar-search-algorithm select:hover {
+	cursor: pointer;
+	border: 1px solid #1DA1F2;
 }
 
 .navbar-search-submit {
@@ -111,19 +128,97 @@ body {
 	padding: 10px 10px 10px 10px;
 	border: 0px;
 	border-radius: 10px;
-	background-color: #4575AB; 
+	background-color: #1c88cc;
 	text-align: center;
 	margin:0 auto;
+}
 
+.navbar-search-submit button:hover{
+	background-color: #1DA1F2;
 }
 
 .content {
-	grid-column: 7/24;
-	height: 100%;
-	padding: 0;
-	margin: 0;
+	grid-column: 7/20;
+	min-height: 80%;
 	margin: 10px;
 	border-radius: 2px;
-	background: #243447;
-	color: #ffffff;	
+	box-shadow: 2px 2px 2px #141d26;
+	background: #1b2836;
+	color: #ffffff; 
+}
+
+.content-loader {
+	margin: 0 auto;
+	margin-top: 100px;
+    border: 8px solid #8899a6; /* Light grey */
+    border-top: 8px solid #1DA1F2; /* Blue */
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.content-header {
+	width: 100%;
+	font-size: 24px;
+	padding: 10px 0px 10px 0px;
+	border-bottom: 5px solid #141d26;
+}
+
+.content-header span {
+	margin-left: 10px;
+	color: #FFFFFF;
+	font-family: 'Do Hyeon', sans-serif;
+}
+
+.tweet {
+	margin:10px 0px 10px 0px;
+	width: 100%;
+	/*padding: 10px;*/
+	min-height: 10%;
+	display: grid;
+	grid-template-columns: repeat(6,1fr);
+	border-bottom: 1px solid #141d26;
+}
+
+.tweet-status {
+	padding: 10px;
+	text-align: center;
+	font-family: 'Roboto', sans-serif;
+	font-weight: bold;
+	font-size: 24px;
+	grid-column: 1/2;
+}
+
+
+.tweet-content {
+	margin: 5px;
+	grid-column: 2/7;
+	text-align: justify;
+	padding: 0px 10px 0px 10px;
+	font-family: 'Roboto', sans-serif;
+}
+
+.tweet-content-name {
+	font-family: 'Roboto', sans-serif;
+	color:#FFFFFF;
+	font-weight: bold;
+}
+
+.tweet-content-handle{
+	font-family: 'Do Hyeon', sans-serif;
+	color:#1DA1F2;
+}
+
+.spam {
+	color: #c51f5d;
+}
+
+.notspam {
+	color: #1DA1F2;	
 }
