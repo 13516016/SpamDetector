@@ -12,10 +12,12 @@ api = TweetGetter('credentials.json')
 def evaluateRegex():
 	if (request.is_json):
 		content = request.get_json()
-		# construct string matcher
+
+		# construct pattern from spam word 
+		# (the pattern is ".*pattern1.*pattern2.*pattern3 (.......).*patternN .*")
 		spam = content['spamkey'].split(' ')
 		pattern = '(.*)' + '(.*)'.join(spam) + '(.*)'
-		print(pattern)
+
 		# get tweets based on search key
 		tweets = api.search_tweets(content['searchkey'])
 
@@ -66,7 +68,3 @@ def evaluateBM():
 if __name__ == '__main__':
 	app.debug = True
 	app.run()
-	
-	# tweets = api.search_tweets("selamat")
-
-	# pprint(tweets)
