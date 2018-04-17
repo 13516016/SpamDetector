@@ -1,4 +1,4 @@
-from StringMatcher import KMP
+from StringMatcher import KMP, BoyerMoore
 from TweetGetter import TweetGetter
 from flask import Flask
 from flask import redirect, url_for, request, render_template
@@ -13,13 +13,31 @@ def evaluateKMP():
 	if (request.is_json):
 		content = request.get_json()
 		# construct string matcher
-		matcher = KMP(content['spamkey'])
+		pattern = content['spamkey']
+		matcher = KMP(pattern)
 		# get tweets based on search key
 		tweets = api.search_tweets(content['searchkey'])
 		# Evaluate tweets using matcher
 		for tweet in tweets:
 			tweet['is_spam'] = matcher.match(tweet['text'])
 			
+		return json.dumps(tweets);
+	else:
+		return "Bad Request"
+
+@app.route('/bm', methods=['POST'])
+def evaluateBM():
+	if (request.is_json):
+		content = request.get_json()
+		# construct string matcher
+		pattern = content['spamkey']
+		matcher = BoyerMoore(pattern)
+		# get tweets based on search key
+		tweets = api.search_tweets(content['searchkey'])
+		# Evaluate tweets using matcher
+		for tweet in tweets:
+			tweet['is_spam'] = matcher.match(tweet['text'])
+
 		return json.dumps(tweets);
 	else:
 		return "Bad Request"

@@ -18,7 +18,7 @@ body {
 
 .container {
 	padding-top: 105px;
-	min-height: 40%;
+	height: 100%;
 	width: 70%;
 	display: grid;
 	margin: 0 auto;
@@ -139,7 +139,7 @@ body {
 
 .content {
 	grid-column: 7/20;
-	min-height: 80%;
+	height: 40%;
 	margin: 10px;
 	border-radius: 2px;
 	box-shadow: 2px 2px 2px #141d26;
@@ -149,7 +149,7 @@ body {
 
 .content-loader {
 	margin: 0 auto;
-	margin-top: 100px;
+	margin-top: 20px;
     border: 8px solid #8899a6; /* Light grey */
     border-top: 8px solid #1DA1F2; /* Blue */
     border-radius: 50%;
@@ -176,11 +176,19 @@ body {
 	font-family: 'Do Hyeon', sans-serif;
 }
 
+.content-placeholder {
+	text-align: center;
+	color: #8899a6;
+	font-family: 'Roboto', sans-serif;
+	margin: 100px;
+}
+
 .tweet {
-	margin:10px 0px 10px 0px;
+	margin:0px;
 	width: 100%;
-	/*padding: 10px;*/
-	min-height: 10%;
+	padding: 5px 0px 5px 0px;
+	background: #1b2836;
+	min-height: 15%;
 	display: grid;
 	grid-template-columns: repeat(6,1fr);
 	border-bottom: 1px solid #141d26;
@@ -194,7 +202,6 @@ body {
 	font-size: 24px;
 	grid-column: 1/2;
 }
-
 
 .tweet-content {
 	margin: 5px;

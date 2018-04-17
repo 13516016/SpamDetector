@@ -8,7 +8,49 @@ class Tweet {
 	}
 
 	generateView(){
+		/*construct tweet outer div*/
+		var tweetDiv = $("<div></div>");
+		tweetDiv.addClass('tweet');
+		
+		/*construct tweet status div*/
+		var tweetStatusDiv = $("<div></div>");
+		tweetStatusDiv.addClass('tweet-status')
 
+		// tweet status content
+		var icon = $("<i></i>");
+		icon.addClass('fa fa-2x');
+		var status = $("<span></span>");
+		var newline = $("<br>");
+		if (this.isSpam){
+			tweetStatusDiv.addClass('spam');
+			icon.addClass('fa-warning');
+			status.text('Spam');
+		} else {
+			tweetStatusDiv.addClass('notspam');
+			icon.addClass('fa-check');
+			status.text('Not Spam');
+		}
+
+		  
+		/*Tweet Content*/
+		var tweetContentDiv = $("<div></div>");
+		tweetContentDiv.addClass('tweet-content');
+		// tweet full name
+		var fullname = $("<span></span>");
+		fullname.addClass('tweet-content-name');
+		fullname.text(this.name);
+		// tweet handle
+		var handle = $("<span></span>");
+		handle.addClass('tweet-content-handle');
+		handle.text(this.handle);
+		// tweet content text
+		var contentText = $("<p></p>");
+		contentText.text(this.text);
+
+		tweetContentDiv.append(fullname,' - ', handle, contentText);
+		tweetStatusDiv.append(icon,newline,status)
+		tweetDiv.append(tweetStatusDiv, tweetContentDiv);
+		return (tweetDiv);
 	}
 
 	print(){
@@ -25,6 +67,8 @@ var inputSpam = $("#input_spam");
 var selectAlgorithm = $("#select_algorithm");
 var buttonSearch = $("#button_search");
 var contentLoader = $("#content_loader");
+var contentPlaceholder = $("#content_placeholder");
+var content = $("#content_tweet");
 var tweets = [];
 
 
@@ -47,30 +91,49 @@ function parseTweets(tweetObjects){
 }
 
 function getTweets(search_keyword,spam_keyword,algorithm){
+  	var targetUrl = 'http://127.0.0.1:5000/';
+
 	json_data = {
 	    "algorithm" : selectedAlgorithm,
 	    "searchkey" : search_keyword,
 	    "spamkey" : spam_keyword
   	}
-
   	contentLoader.show();
+  	contentPlaceholder.hide();
+  	
+  	if (algorithm == "kmp"){
+  		targetUrl += "kmp";
+  	} else if (algorithm == "bm"){
+  		targetUrl+= "bm";
+  	} else if (algorithm == "regex"){
+  		targetUrl += "regex";
+  	}
+
 	$.ajax({
-		url: 'http://127.0.0.1:5000/kmp',
+		url: targetUrl,
 		type: 'POST',
 		data: JSON.stringify(json_data),
 		contentType: 'application/json',
 		success: function(result){
-			response = JSON.parse(result);
+			var response = JSON.parse(result);
+			
 			tweets = parseTweets(response);
+			
+			if (tweets.length==0){
+				contentPlaceholder.show();
+			}
+
 			for (var i = 0; i < tweets.length; i++) {
-				tweets[i].print();	  
-			}			
+				var tweetObject = tweets[i].generateView();	  
+				content.prepend(tweetObject);
+			}
 		},
 		error: function(result){
 			alert("Something is wrong");
 		},
 		complete: function(){
 			contentLoader.hide();
+			
 		}
 
 	});	

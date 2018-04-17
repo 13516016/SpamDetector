@@ -1,15 +1,14 @@
-<!-- <?php header('Access-Control-Allow-Origin: *'); ?> -->
+<?php header('Access-Control-Allow-Origin: *'); ?>
 
 <!DOCTYPE html>
 <html>
 <head>
+	<meta charset="utf-8">
 	<title><?php print("Twitter Spam Detector")?></title>
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 	<link href="https://fonts.googleapis.com/css?family=Do+Hyeon|Roboto" rel="stylesheet">
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-
-
 </head>
 <body>
 	<div class="header">
@@ -48,7 +47,6 @@
 								$option = generate_option($algorithms_val[$i],$algorithms_text[$i]);
 								print($option);
 							}
-
 					 	?>
 					</select>
 				</div>
@@ -62,12 +60,15 @@
 
 			</div>
 
-		<div class="content">
-			
+		<div class="content" id="content">
 			
 			<div class="content-header"> <span>Result</span>  </div>
 			<div class="content-loader" id="content_loader"></div>
+			<div class="content-tweet" id="content_tweet"></div>
 			
+			<div class="content-placeholder" id="content_placeholder">
+				No tweets to show.
+			</div>
 
 		</div>
 
