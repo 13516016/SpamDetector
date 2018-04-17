@@ -8,6 +8,27 @@ import re
 app = Flask(__name__)
 api = TweetGetter('credentials.json')
 
+@app.route('/regex', methods=['POST'])
+def evaluateRegex():
+	if (request.is_json):
+		content = request.get_json()
+		# construct string matcher
+		spam = content['spamkey'].split(' ')
+		pattern = '(.*)' + '(.*)'.join(spam) + '(.*)'
+		print(pattern)
+		# get tweets based on search key
+		tweets = api.search_tweets(content['searchkey'])
+
+		for tweet in tweets:
+			if (re.search(pattern, tweet['text'].lower())):
+				tweet['is_spam'] = True
+			else:
+				tweet['is_spam'] = False
+			
+		return json.dumps(tweets);
+	else:
+		return "Bad Request"
+
 @app.route('/kmp', methods=['POST'])
 def evaluateKMP():
 	if (request.is_json):
@@ -19,7 +40,7 @@ def evaluateKMP():
 		tweets = api.search_tweets(content['searchkey'])
 		# Evaluate tweets using matcher
 		for tweet in tweets:
-			tweet['is_spam'] = matcher.match(tweet['text'])
+			tweet['is_spam'] = matcher.match(tweet['text'].lower())
 			
 		return json.dumps(tweets);
 	else:
@@ -36,7 +57,7 @@ def evaluateBM():
 		tweets = api.search_tweets(content['searchkey'])
 		# Evaluate tweets using matcher
 		for tweet in tweets:
-			tweet['is_spam'] = matcher.match(tweet['text'])
+			tweet['is_spam'] = matcher.match(tweet['text'].lower())
 
 		return json.dumps(tweets);
 	else:
